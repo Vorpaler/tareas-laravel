@@ -35,31 +35,29 @@ class JuegoController extends Controller
         return view('admin.juegos', ['juegos' => $juego]);
     }
 
-    public function edit(Request $request)
-{   
-    $juego = Juego::find($request->id);
-    return view('admin.edit-juego', ['juego' => $juego]);
-}
-
-
-    public function update(Request $request, $id)
-    {     
-        $juego = Juego::findOrFail($id);
-            $request->validate([
-                'nombre' => 'required|max:255',
-                'precio' => ['required|min:0|max:30000'],
-                'descripcion' => ['required', 'max:255']
-            ]);
-
-            $juego->nombre = $request['nombre'];
-            $juego->precio = $request['precio'];
-            $juego->descripcion = $request['descripcion']; 
-
-        return redirect()
-            ->route('admin.juegos')
-            ->with('status', 'El juego se ha modificado correctamente.');
+    public function edit($id)
+    {   
+        $juego = Juego::find($id);
+        return view('admin.edit-juego', ['juego' => $juego]);
     }
 
+
+    public function update(Request $request, Juego $juego)
+    { 
+        $request->validate([
+            'nombre' => 'required|max:255',
+            'precio' => ['required', 'min:0'],
+            'descripcion' => ['required', 'max:255']
+        ]);
+
+        $juego->update([
+            'nombre' => $request->nombre,
+            'precio' => $request->precio,
+            'descripcion' => $request->descripcion
+        ]);
+
+        return redirect()->route('admin.juegos')->with('message', 'El juego se ha modificado correctamente.');
+    }
 
     public function destroy(Juego $juego)
     {

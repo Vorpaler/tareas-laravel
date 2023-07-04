@@ -31,7 +31,8 @@
                                 <td> {{ $juego->categoria ? $juego->categoria->nombre : 'N/A' }}
                                 <td>
                                 <div class="main-button-edit">
-                                <a href="{{ route('admin.edit-juego', $juego ) }}" class="btn"> Editar Juego </a>
+                                <a href="{{ route('admin.edit-juego', $juego->id) }}" class="btn">Editar Juego</a>
+
                                     </div>                                
                                     </div>
                                     <div class="main-button-elim">

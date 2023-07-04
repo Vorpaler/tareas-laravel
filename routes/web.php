@@ -49,17 +49,13 @@ Route::post('/admin/juegos', [
     JuegoController::class, 'store'
 ])->name('admin.store-juego');
 
-Route::get('/admin/juegos/edit', [    JuegoController::class, 'edit'])->name('admin.edit-juego'); 
-#Route::get('/admin/juegos/{id}/edit', [JuegoController::class, 'edit'])->name('admin.edit-juego');
+Route::get('/admin/edit-juego/{id}', [JuegoController::class, 'edit'])->name('admin.edit-juego');
 
-Route::put('/admin/juegos/{id}', [
-    JuegoController::class, 'update'
-])->name('admin.update-juego');
+Route::put('/admin/juegos/{id}', [JuegoController::class, 'update'])->name('admin.update-juego');
 
 Route::get('/admin/agre-juego', [
     JuegoController::class, 'agre'
 ])->name('admin.agre-juego');
-   
     
 
 
