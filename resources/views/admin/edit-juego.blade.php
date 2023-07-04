@@ -10,19 +10,18 @@
 
 <div class="section py-5">
     <div class="container mt-5 mb-5 py-5" style="background-color: #e6ae2a;">
-        <form action="{{ $juego ? route('admin.update-juego', $juego) : '#' }}" method="POST">
-            @method('PUT')
+        <form action="{{ route('admin.update-juego', $juego) }}" method="POST">
             @csrf
-
+            @method('PUT')
             <div class="row mb-4">
                 <div class="form-outline">
-                    <input type="text" id="form6Example1" class="form-control" name="nombre" value="{{ $juego->nombre ?? 'no devolvio nada' }}" />
+                    <input type="text" id="form6Example1" class="form-control" name="nombre" value="{{ $juego->nombre }}" />
                     <label class="form-label" for="form6Example1">Nombre de juego</label>
                 </div>
             </div>
 
             <div class="form-outline mb-4">
-                <input type="text" id="form6Example3" class="form-control" name="descripcion" value="{{ $juego->descripcion ?? '' }}" />
+                <input type="text" id="form6Example3" class="form-control" name="descripcion" value="{{ $juego->descripcion }}" />
                 <label class="form-label" for="form6Example3">Descripcion</label>
             </div>
 

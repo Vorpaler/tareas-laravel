@@ -8,9 +8,6 @@ use App\Models\Juego;
 
 class JuegoController extends Controller
 {
-    public function store()
-    {
-    }
 
 
     public function create()
@@ -42,7 +39,7 @@ class JuegoController extends Controller
     }
 
 
-    public function update(Request $request, Juego $juego)
+    public function update(Request $request, $id)
     { 
         $request->validate([
             'nombre' => 'required|max:255',
@@ -50,39 +47,43 @@ class JuegoController extends Controller
             'descripcion' => ['required', 'max:255']
         ]);
 
-        $juego->update([
-            'nombre' => $request->nombre,
-            'precio' => $request->precio,
-            'descripcion' => $request->descripcion
-        ]);
+        $juego = Juego::find($id);
+        $juego->nombre = $request->nombre;
+        $juego->precio = $request->precio;
+        $juego->descripcion = $request->descripcion;
+        $juego->save();
 
         return redirect()->route('admin.juegos')->with('message', 'El juego se ha modificado correctamente.');
     }
 
-    public function destroy(Juego $juego)
+   
+    public function destroy($id)
     {
-        // Realiza la lógica de eliminación del juego
-        // Puedes utilizar el método delete() en el modelo Juego
-        $juego->delete();
+        Juego::findOrFail($id)->delete();
 
-        // Redirecciona a la vista de administración de juegos
-        return redirect()->route('admin.juegos')->with('success', 'Juego eliminado exitosamente');
-    }
-
-    public function agre()
-    {
-        $juegos = Juego::paginate(6);
-        return view('admin.agre-juego', ['juegos' => $juegos]);
+        return redirect()
+        ->route('admin.juegos')
+        ->with('status', 'El producto se ha eliminado correctamente.');
     }
 
 
-    public function show(Juego $juegos)
-    {
+
+
+
+    public function agre(Request $request)
+    {  
+        $fotoPath = $request->file('foto')->store('img/');
+    
+        Juego::create([
+            'nombre' => $request->nombre,
+            'precio' => $request->precio,
+            'descripcion' => $request->descripcion,
+            'id_categoria' => $request->id_categoria,
+            'path_imagen' => $fotoPath
+        ]);
+    
+        return redirect()->route('admin.juegos');
     }
+    
+
 }
-
-/*    public function index()
-{
-    $Juego = Producto::all();
-    return view('index', compact('Juego'));
-}*/

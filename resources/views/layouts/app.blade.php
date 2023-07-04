@@ -13,8 +13,10 @@
   <!-- Fonts -->
   <link rel="dns-prefetch" href="//fonts.bunny.net">
   <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
   <!-- Scripts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
   @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
 </head>
@@ -23,8 +25,8 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Offcanvas navbar large">
     <div class="container">
-    <a href="{{ route('index') }}"><img src="{{ asset('img/navbarLogo.png') }}" alt="Logo" class="overlay-image center" style="max-width: 100%; max-height: 100px;"></a>
-    <a class="navbar-brand fs-1 text" href="{{ route('index') }}" style="margin: 0;">Estim</a><a class="navbar-brand fs-1 text" href="{{ route('index') }}" style="color: #e6ae2a; margin: 0;">Verde</a>
+    <a href="{{ route('index') }}"><img src="{{ asset('img/navbarLogo.png') }}" alt="Logo" class="overlay-image center" style="max-width: 100%; max-height: 50px;"></a>
+    <a class="navbar-brand fs-1 text" href="{{ route('index') }}" style="margin: 0;">stim</a><a class="navbar-brand fs-1 text" href="{{ route('index') }}" style="color: #e6ae2a; margin: 0;">Verde</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2">
         <span class="navbar-toggler-icon"></span>
       </button>
